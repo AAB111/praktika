@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main/styles.css">
+    <title>Абырвалг</title>
+</head>
+<body>
+    <aside>
+        <div class="nav-title">
+            <div class="logo">
+                <a href=""><img src="https://theme.zdassets.com/theme_assets/9756231/c3073bca3f32840c279f3ac3b76db132d49583e6.png" alt="logo"></a>
+            </div>
+            <a href="#"><h1>POSIFLORA</h1></a>
+            <button class="hamburger" id="mobile-menu-btn">
+                <div class="btn__hamb btn__hamb--blue">
+                    <div></div>
+                </div>
+            </button>
+        </div>
+        <nav class="nav-aside">
+            <ul class="nav-list">
+                <li class="basket" onclick="location.href='/main.html'">
+                    <a href="/main.html">
+                    <div>
+                        <img src="/img/basket2.svg" alt="basket">
+                    </div>
+                    <p>Товар</p></a>
+                </li>
+                <li class="delivery" onclick="location.href='/Delivery.html'">
+                    <a href="/Delivery.html">
+                    <div><img src="/img/delivery.svg" alt="delivery"></div>
+                    <p>Заказы</p></a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+    <main>
+        <h1>Каталог товаров</h1>
+        <div class="table-outer">
+            <div class="table-inner">
+                <div class="functions">
+                    <div class="buttons">
+                        <button class="create-btn">Создать товар</button>
+                        <button class="delete-btn">Удалить товар</button>
+                    </div>
+                    <div class="dropdown">
+                        <select name="one" class="dropdown-select">
+                          <option value="Категория">Категория</option>
+                          <option value="Цветы">Цветы</option>
+                          <option value="Семена">Семена</option>
+                        </select>
+                      </div>
+                </div>
+                <table class="table">
+                    <thead>
+                      <tr class="row-header">
+                        <td><input name="checkRowAll" type="checkbox"></td>
+                        <td>Название</td>
+                        <td>Категория</td>
+                        <td>Цена</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </table>
+                  <div class="parametrs-table">
+                    
+                    <p>К-во на странице:</p>
+                    <div class="dropdown">
+                        <select class="dropdown-select">
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="30">30</option>
+                        </select>
+                    </div>
+                    <p>Страница: </p>
+                    <input  class='dropdown page' value = '0' type="number" min = "0" tabindex="3" required>
+                  </div>
+            </div>
+        </div>
+    </main>
+    <script src="/js/Products/main.js"></script>
+    <script src="/js/Products/btn.js"></script>
+    <script src="/js/Products/modal.js"></script>
+    <script src="/js/Products/sidebar.js"></script>
+</body>
+</html>
