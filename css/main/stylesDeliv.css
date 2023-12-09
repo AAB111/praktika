@@ -118,6 +118,7 @@ height: 4px;
     margin-right: 10px;
 }
 .create-btn{
+  width: 150px;
     padding: 0 15px;
     border: 0;
     background-color: rgb(26, 179, 130);
@@ -430,7 +431,7 @@ table tbody tr td:nth-child(4){
   padding: 5px;
 }
 .list-status li:hover{
-  border-bottom: 3px solid #09C;
+  border-bottom: 3px solid rgb(110, 200, 231);
   cursor: pointer;
 }
 .list-status-li-active{

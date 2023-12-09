@@ -76,34 +76,3 @@ const modalDelete = new ItcModal({
         { class: 'btn btn-cancel', text: 'Отмена', action: 'cancel' }
         ]
 });
-const modalCreate = new ItcModal({
-    title:'Создать товар',
-    content: `
-        <form id="contact" action="" method="post">
-        <fieldset>
-        <input placeholder="id" class='name' type="text" tabindex="1" required autofocus>
-        </fieldset>
-        <fieldset>
-        <input placeholder="Клиент" class='name' type="text" tabindex="2" required autofocus>
-        </fieldset>
-        <fieldset>
-        <input placeholder="Цена" class='price' type="number" min = "0" tabindex="3" required>
-        </fieldset>
-        <fieldset>
-        <input placeholder="Комментарий" class='category' type="text" tabindex="2" required>
-        </fieldset>
-        <fieldset>
-        <input placeholder="Дата исполнения" class='category' type="text" tabindex="2" required>
-        </fieldset>
-        <fieldset>
-        <select class ='dropdown-select'>
-        <option value="Самовывоз">Самовывоз</option>
-        <option value="Курьер">Курьер</option>
-        </select>
-        </fieldset>
-        <fieldset>
-        <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Добавить</button>
-        </fieldset>
-    </form>
-    `,
-});

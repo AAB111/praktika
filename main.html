@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/main/styles.css">
+    <link rel="stylesheet" href="/css/main/stylesProducts.css">
     <title>Абырвалг</title>
 </head>
 <body>
@@ -42,16 +42,20 @@
             <div class="table-inner">
                 <div class="functions">
                     <div class="buttons">
-                        <button class="create-btn">Создать товар</button>
-                        <button class="delete-btn">Удалить товар</button>
+                        <button class="create-btn">Создать</button>
+                        <button class="delete-btn">Удалить</button>
+                        <button class="edit-btn">Редактировать</button>
                     </div>
-                    <div class="dropdown">
-                        <select name="one" class="dropdown-select">
-                          <option value="Категория">Категория</option>
-                          <option value="Цветы">Цветы</option>
-                          <option value="Семена">Семена</option>
-                        </select>
-                      </div>
+                    <div>
+                        <input type="text" placeholder="Название" class="dropdown">
+                        <div class="dropdown">
+                            <select name="one" class="dropdown-select">
+                              <option value="Категория">Категория</option>
+                              <option value="Цветы">Цветы</option>
+                              <option value="Семена">Семена</option>
+                            </select>
+                          </div>
+                    </div>
                 </div>
                 <table class="table">
                     <thead>
@@ -66,7 +70,6 @@
                     </tbody>
                   </table>
                   <div class="parametrs-table">
-                    
                     <p>К-во на странице:</p>
                     <div class="dropdown">
                         <select class="dropdown-select">
@@ -81,9 +84,10 @@
             </div>
         </div>
     </main>
+    <script src="/js/Common/modal.js"></script>
+    <script src="/js/Common/sidebar.js"></script>
+    <script src="/js/Common/btn.js"></script>
     <script src="/js/Products/main.js"></script>
-    <script src="/js/Products/btn.js"></script>
-    <script src="/js/Products/modal.js"></script>
-    <script src="/js/Products/sidebar.js"></script>
+    <script src="/js/Products/btn-products.js"></script>
 </body>
 </html>

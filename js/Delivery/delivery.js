@@ -1,21 +1,16 @@
 class Delivery{
-    constructor(id, client,price,comment,dateCreate,dateEnd,methodObtaining){
-        this.id = id;
+    constructor(client,price,comment,dateCreate,dateEnd,status='Новые'){
         this.client = client;
         this.price = price;
         this.comment = comment;
         this.dateCreate = dateCreate;
         this.dateEnd = dateEnd;
-        this.status = 'Новые'
-        this.methodObtaining = methodObtaining;
+        this.status = status;
     }    
 }
-function createRow(delivery){
+function CreateRow(delivery){
     let row = document.createElement('tr');
     row.classList.add('row-element');
-
-    var idCell = document.createElement('td');
-    idCell.textContent = delivery.id;
 
     var clientCell = document.createElement('td');
     clientCell.textContent = delivery.client;
@@ -35,7 +30,6 @@ function createRow(delivery){
     var  methodObtainingCell = document.createElement('td');
     methodObtainingCell.textContent = delivery.methodObtaining;
 
-    row.appendChild(idCell)
     row.appendChild(clientCell)
     row.appendChild(priceCell)
     row.appendChild(commentCell)
@@ -44,41 +38,61 @@ function createRow(delivery){
     row.appendChild(methodObtainingCell);
     return row
 }
-function addRowDelivery(delivery)
+function AddRowDelivery(delivery)
 {
-    const row = printRow(delivery);
-    // row.addEventListener('click', function(event){
-    //     const input = row.querySelector('input');
-    //     input.checked = !input.checked;
-    // });
-    // const input = row.querySelector('input[name=checkRow]');
-    // input.addEventListener('click', function(event){
-    //     event.stopPropagation();
-    // });
+    const row = PrintRow(delivery);
+    row.addEventListener('click', function(event){
+        const modalEditStatus = new ItcModal({
+            title:'Изменить товар',
+            content: `
+                <form id="contact" action="" method="post">
+                <fieldset>
+                <input placeholder="Клиент" value='${delivery.client}' class='name' type="text" tabindex="2" required autofocus>
+                </fieldset>
+                <fieldset>
+                <input placeholder="Цена" class='price' value='${delivery.price}' type="number" min = "0" tabindex="4" required>
+                </fieldset>
+                <fieldset>
+                <input placeholder="Дата исполнения" class='category' value='${delivery.dateEnd}' type="text" tabindex="3" required>
+                </fieldset>
+                <fieldset>
+                <input placeholder="Статус" class='status' value='${delivery.status}' type="number" min = "0" tabindex="4" required>
+                </fieldset>
+                <fieldset>
+                <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Изменить</button>
+                </fieldset>
+                
+            </form>
+            `,
+        });
+        modalEditStatus.show();
+        const form = document.querySelector('#contact')
+        form.addEventListener('submit',EditProduct);
+    });
 }
-function printRow(product){
-    const row = createRow(product);
+function PrintRow(product){
+    const row = CreateRow(product);
     document.querySelector('tbody').appendChild(row);
     return row;
 }
-function clearTbody(){
+function ClearTbody(){
     const container = document.querySelector('tbody');
     
     while (container.firstChild) {
         container.removeChild(container.firstChild);
 } 
 }
-let filterClient = ''
-function ShowPage(page) {
+function ShowTable(page) {
+    ClearTbody()
     const startIndex = page * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     // const category = document.querySelector('.functions .dropdown-select').value;
-    clearTbody()
+    const client = document.querySelector('.dropdown .dropdown-select').value;
     let arrShowDelivery = []
-    if (filterClient != '') 
+    if (client != '') 
     {
         arrDelivery.forEach(delivery=>{
-            if (delivery.client.toLowerCase().match(filterClient))
+            if (delivery.client.toLowerCase().match(client))
             {
                 arrShowDelivery.push(delivery)
             }
@@ -91,7 +105,7 @@ function ShowPage(page) {
     if (currentStatus.textContent.trim().toLowerCase() === 'все'){
         arrShowDelivery = arrShowDelivery.slice(startIndex, endIndex)
         arrShowDelivery.forEach(delivery => {
-            addRowDelivery(delivery)
+            AddRowDelivery(delivery)
         });
     }
     else
@@ -105,31 +119,23 @@ function ShowPage(page) {
         })
         let arrSliceDelivery = arrShow.slice(startIndex, endIndex)
         arrSliceDelivery.forEach(delivery => {
-            addRowDelivery(delivery)
+            AddRowDelivery(delivery)
         });
     }
   }
-
 const listLi = document.querySelectorAll('.list-status li')
 listLi.forEach((li)=>{
     li.addEventListener('click',(event)=>{
         li.classList.toggle('list-status-li-active')
         currentStatus.classList.toggle('list-status-li-active')
         currentStatus = li
-        ShowPage(currentPage)
+        ShowTable(currentPage)
     })
 })
 currentStatus = listLi[0]
 currentStatus.classList.toggle('list-status-li-active')
 let itemsPerPage = 10
 let currentPage = 0
-// const inputAll =  document.querySelector('input[name=checkRowAll]') 
-// inputAll.addEventListener('click',(event)=>{
-//     inputs = document.querySelectorAll('input[name=checkRow]')
-//     inputs.forEach(input=>{
-//         input.checked = inputAll.checked;
-//     })
-// })
 /*Создание массива товара*/
 const options = {
     year: 'numeric',
@@ -143,9 +149,9 @@ const now = new Date()
 const time = now.toLocaleString("ru", options)
 now.setDate(now.getDate() + 2)
 const timeEnd = now.toLocaleString('ru', options)
-const arrDelivery = [new Delivery('0','Иван Иванов','1000','',time,timeEnd,'Самовывоз'),
-                    new Delivery('1','Макс Иванов','800','',time,timeEnd,'Самовывоз'),
-                    new Delivery('2','Игорь Иванов','900','',time,timeEnd,'Самовывоз'),
-                    new Delivery('3','Дима Иванов','1200','',time,timeEnd,'Самовывоз'),
-                    new Delivery('4','Дима Иванов','1500','',time,timeEnd,'Самовывоз')]
-ShowPage(currentPage)
+const arrDelivery = [new Delivery('Иван Иванов','1000','',time,timeEnd,'собранные'),
+                    new Delivery('Макс Иванов','800','',time,timeEnd,'возврат'),
+                    new Delivery('Игорь Иванов','900','',time,timeEnd),
+                    new Delivery('Дима Иванов','1200','',time,timeEnd),
+                    new Delivery('Дима Иванов','1500','',time,timeEnd)]
+ShowTable(currentPage)
